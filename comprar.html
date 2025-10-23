@@ -5,10 +5,10 @@
       const estaLogueadoComprar = sessionStorage.getItem('usuarioLogueado');
       if (estaLogueadoComprar !== 'true') {
           alert('Debes iniciar sesión para acceder a esta página.');
-          window.location.replace('registro.html'); // Usamos replace para no guardar en historial
+          window.location.replace('registro.html');
       }
-      
   </script>
+  
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ2E5FLEEF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -234,13 +234,16 @@
             navButtonContainer.innerHTML = `
                 <a class="btn btn-primary display-4" href="#" id="logout-btn">CERRAR SESIÓN</a>
             `;
-            document.getElementById('logout-btn').addEventListener('click', function(e) {
-                e.preventDefault();
-                sessionStorage.removeItem('usuarioLogueado');
-                sessionStorage.removeItem('usuarioEmail');
-                alert('Sesión cerrada.');
-                window.location.href = 'index.html';
-            });
+            const logoutBtn = document.getElementById('logout-btn');
+            if(logoutBtn) {
+                 logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sessionStorage.removeItem('usuarioLogueado');
+                    sessionStorage.removeItem('usuarioEmail');
+                    alert('Sesión cerrada.');
+                    window.location.href = 'index.html';
+                });
+            }
         } else {
             navButtonContainer.innerHTML = '<a class="btn btn-primary display-4" href="registro.html">REGISTRATE!!</a>';
         }

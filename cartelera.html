@@ -156,9 +156,9 @@
 
 <script>
     function comprarEntrada(nombreObra, precioObra, salaObra, imgObra) {
-        const usuario = sessionStorage.getItem('usuarioLogueado'); // Revisa si está logueado
+        const usuario = sessionStorage.getItem('usuarioLogueado');
         
-        if (usuario === 'true') { // Si está logueado...
+        if (usuario === 'true') {
             const entrada = {
                 nombre: nombreObra,
                 precioUnitario: precioObra,
@@ -190,13 +190,16 @@
             navButtonContainer.innerHTML = `
                 <a class="btn btn-primary display-4" href="#" id="logout-btn">CERRAR SESIÓN</a>
             `;
-            document.getElementById('logout-btn').addEventListener('click', function(e) {
-                e.preventDefault();
-                sessionStorage.removeItem('usuarioLogueado');
-                sessionStorage.removeItem('usuarioEmail');
-                alert('Sesión cerrada.');
-                window.location.href = 'index.html';
-            });
+            const logoutBtn = document.getElementById('logout-btn');
+            if(logoutBtn) {
+                 logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sessionStorage.removeItem('usuarioLogueado');
+                    sessionStorage.removeItem('usuarioEmail');
+                    alert('Sesión cerrada.');
+                    window.location.href = 'index.html';
+                });
+            }
         } else {
             navButtonContainer.innerHTML = '<a class="btn btn-primary display-4" href="registro.html">REGISTRATE!!</a>';
         }

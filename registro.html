@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html  >
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ2E5FLEEF"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ2E5FLEEF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-        gtag('config', 'G-KQ2E5FLEEF');
-    </script>
+    gtag('config', 'G-KQ2E5FLEEF');
+  </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v6.1.4, mobirise.com">
@@ -81,13 +81,12 @@
                                 <label for="password" class="form-label mbr-fonts-style display-7">Contraseña</label>
                                 <input type="password" name="password" placeholder="Tu contraseña" class="form-control" required id="password-form03-2g">
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn mt-3"> {/* Añadido margen superior mt-3 */}
+                            <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn mt-3">
                                 <button type="submit" class="btn btn-primary display-7">Ingresar / Registrarse</button>
                             </div>
                         </div>
                     </form>
-                    
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -145,13 +144,16 @@
             navButtonContainer.innerHTML = `
                 <a class="btn btn-primary display-4" href="#" id="logout-btn">CERRAR SESIÓN</a>
             `;
-            document.getElementById('logout-btn').addEventListener('click', function(e) {
-                e.preventDefault();
-                sessionStorage.removeItem('usuarioLogueado');
-                sessionStorage.removeItem('usuarioEmail');
-                alert('Sesión cerrada.');
-                window.location.href = 'index.html';
-            });
+            const logoutBtn = document.getElementById('logout-btn');
+            if(logoutBtn) {
+                 logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sessionStorage.removeItem('usuarioLogueado');
+                    sessionStorage.removeItem('usuarioEmail');
+                    alert('Sesión cerrada.');
+                    window.location.href = 'index.html';
+                });
+            }
         } else {
             navButtonContainer.innerHTML = '<a class="btn btn-primary display-4" href="registro.html">REGISTRATE!!</a>';
         }
