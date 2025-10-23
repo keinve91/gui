@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html  >
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ2E5FLEEF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KQ2E5FLEEF');
+    </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v6.1.4, mobirise.com">
@@ -181,7 +189,6 @@
                 <a class="btn btn-primary display-4" href="#" id="logout-btn">CERRAR SESIÓN</a>
             `;
             
-            // Asegurarse de que el botón exista antes de añadir el listener
             const logoutBtn = document.getElementById('logout-btn');
             if (logoutBtn) {
                  logoutBtn.addEventListener('click', function(e) {
