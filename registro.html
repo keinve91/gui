@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html  >
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ2E5FLEEF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KQ2E5FLEEF');
+    </script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v6.1.4, mobirise.com">
@@ -113,7 +121,6 @@
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  <script src="assets/formoid/formoid.min.js"></script>  
   
 <script>
-    // Función para manejar el inicio de sesión
     function iniciarSesion(email) {
         sessionStorage.setItem('usuarioLogueado', 'true');
         sessionStorage.setItem('usuarioEmail', email);
@@ -121,14 +128,11 @@
         window.location.href = 'index.html';
     }
 
-    // Listener para el formulario
     document.getElementById('registro-form').addEventListener('submit', function(event) {
         event.preventDefault();
         const email = document.getElementById('email-form03-2g').value;
         iniciarSesion(email);
     });
-    
-    // Función simularGoogle eliminada
 </script>
 
 <script>
