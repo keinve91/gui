@@ -121,6 +121,10 @@
   
 <script>
     function iniciarSesion(email) {
+        gtag('event', 'login', { 
+          'method': 'Email' 
+        });
+
         sessionStorage.setItem('usuarioLogueado', 'true');
         sessionStorage.setItem('usuarioEmail', email);
         alert('¡Bienvenido! (Simulación).\nSerás redirigido al inicio.');
@@ -140,7 +144,6 @@
         const navButtonContainer = document.querySelector('.navbar-buttons');
 
         if (usuario === 'true') {
-            const emailUsuario = sessionStorage.getItem('usuarioEmail');
             navButtonContainer.innerHTML = `
                 <a class="btn btn-primary display-4" href="#" id="logout-btn">CERRAR SESIÓN</a>
             `;

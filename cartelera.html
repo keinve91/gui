@@ -159,6 +159,12 @@
         const usuario = sessionStorage.getItem('usuarioLogueado');
         
         if (usuario === 'true') {
+            gtag('event', 'click_comprar', {
+              'event_category': 'Interaccion Carrito',
+              'event_label': nombreObra,
+              'value': precioObra
+            });
+            
             const entrada = {
                 nombre: nombreObra,
                 precioUnitario: precioObra,
@@ -186,7 +192,6 @@
         const navButtonContainer = document.querySelector('.navbar-buttons');
 
         if (usuario === 'true') {
-            const emailUsuario = sessionStorage.getItem('usuarioEmail');
             navButtonContainer.innerHTML = `
                 <a class="btn btn-primary display-4" href="#" id="logout-btn">CERRAR SESIÓN</a>
             `;
