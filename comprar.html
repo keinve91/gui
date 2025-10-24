@@ -163,6 +163,7 @@
 <script>
     let precioUnitario = 0;
     let itemSeleccionado = null;
+    let cantidadSeleccionada = 1;
 
     window.onload = function() {
         const itemJSON = localStorage.getItem('carritoItem');
@@ -188,29 +189,43 @@
             document.getElementById('cantidad').addEventListener('input', actualizarTotal);
         } else {
             carritoDiv.innerHTML = '<p>Tu carrito está vacío.</p><a href="cartelera.html" class="btn btn-sm btn-secondary">Volver a la cartelera</a>';
-            document.getElementById('checkout-form').style.display = 'none';
+             if (document.getElementById('checkout-form')) {
+                document.getElementById('checkout-form').style.display = 'none';
+            }
         }
     };
 
     function actualizarTotal() {
-        const cantidad = document.getElementById('cantidad').value;
-        const total = precioUnitario * cantidad;
+        cantidadSeleccionada = parseInt(document.getElementById('cantidad').value) || 1;
+        const total = precioUnitario * cantidadSeleccionada;
         document.getElementById('precio-total').textContent = `$${total.toFixed(2)}`;
     }
 
     document.getElementById('checkout-form').addEventListener('submit', function(event) {
         event.preventDefault(); 
+        
         const nombre = document.querySelector('input[name="nombre"]').value;
         const email = document.querySelector('input[name="email"]').value;
-        const cantidad = document.getElementById('cantidad').value;
-        const total = precioUnitario * cantidad;
+        const total = precioUnitario * cantidadSeleccionada;
         
+        gtag('event', 'purchase', {
+          'transaction_id': 'T' + Date.now(),
+          'value': total,
+          'currency': 'ARS',
+          'items': [{
+            'item_id': itemSeleccionado.nombre.replace(/\s+/g, '_').toLowerCase(),
+            'item_name': itemSeleccionado.nombre,
+            'price': precioUnitario,
+            'quantity': cantidadSeleccionada
+          }]
+        });
+
         const compraConfirmada = {
             nombreCliente: nombre,
             emailCliente: email,
             obra: itemSeleccionado.nombre,
             sala: itemSeleccionado.sala,
-            cantidad: cantidad,
+            cantidad: cantidadSeleccionada,
             totalPagado: total
         };
         localStorage.setItem('compraConfirmada', JSON.stringify(compraConfirmada));
@@ -230,7 +245,6 @@
         const navButtonContainer = document.querySelector('.navbar-buttons');
 
         if (usuario === 'true') {
-            const emailUsuario = sessionStorage.getItem('usuarioEmail');
             navButtonContainer.innerHTML = `
                 <a class="btn btn-primary display-4" href="#" id="logout-btn">CERRAR SESIÓN</a>
             `;
